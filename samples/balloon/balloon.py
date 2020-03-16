@@ -43,11 +43,11 @@ from mrcnn.config import Config
 from mrcnn import model as modellib, utils
 
 # Path to trained weights file
-COCO_WEIGHTS_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
+COCO_WEIGHTS_PATH = os.path.join('/mnt/020A64DB0A64CD6B/weights/mask-r-cnn', "mask_rcnn_coco.h5")
 
 # Directory to save logs and model checkpoints, if not provided
 # through the command line argument --logs
-DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
+DEFAULT_LOGS_DIR = os.path.join('/mnt/020A64DB0A64CD6B/weights/mask-r-cnn/custom', "logs")
 
 ############################################################
 #  Configurations
@@ -63,10 +63,16 @@ class BalloonConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
+
+    GPU_COUNT = 1
+
+    IMAGE_MIN_DIM = IMAGE_MAX_DIM = 128
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + balloon
+
+    BACKBONE = "resnet50"
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
