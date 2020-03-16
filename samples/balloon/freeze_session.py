@@ -52,7 +52,7 @@ def freeze_model(model, name):
     frozen_graph = freeze_session(
         sess,
         output_names=[out.op.name for out in model.outputs][:4])
-    directory = '{YOUR_PATH}/mask-r-cnn/proto'
+    directory = '/mnt/{YOUR_PATH}/mask-r-cnn/proto'
     tf.train.write_graph(frozen_graph, directory, name + '.pb', as_text=False)
 
 
@@ -64,7 +64,7 @@ class InferenceConfig(Config):
     IMAGES_PER_GPU = 1
 config = InferenceConfig()
 
-MODEL_DIR = '{YOUR_PATH}/mask-r-cnn/custom/balloon20200312T1813'
+MODEL_DIR = '{YOUR_PATH}/mask-r-cnn/custom/weights'
 H5_WEIGHT_PATH = '{YOUR_PATH}/mask_rcnn_balloon_0029.h5'
 FROZEN_NAME = 'frozen_graph_ballons'
 
