@@ -52,21 +52,21 @@ def freeze_model(model, name):
     frozen_graph = freeze_session(
         sess,
         output_names=[out.op.name for out in model.outputs][:4])
-    directory = '/mnt/{YOUR_PATH}/mask-r-cnn/proto'
-    tf.train.write_graph(frozen_graph, directory, name + '.pb', as_text=False)
+    directory = '/mnt/020A64DB0A64CD6B/weights/mask-r-cnn/tensor2'
+    tf.train.write_graph(frozen_graph, directory, name + '.pb') #as_text=False
 
 
 class InferenceConfig(Config):
     # Set batch size to 1 since we'll be running inference on
     # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
-    NAME = "balloon"
+    NAME = "cats"
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
 config = InferenceConfig()
 
-MODEL_DIR = '{YOUR_PATH}/mask-r-cnn/custom/weights'
-H5_WEIGHT_PATH = '{YOUR_PATH}/mask_rcnn_balloon_0029.h5'
-FROZEN_NAME = 'frozen_graph_ballons'
+MODEL_DIR = '/mnt/020A64DB0A64CD6B/weights/mask-r-cnn/tensor2'
+H5_WEIGHT_PATH = '/mnt/020A64DB0A64CD6B/weights/mask-r-cnn/tensor2/cp-0005.h5'
+FROZEN_NAME = 'frozen_graph_cats'
 
 model = modellib.MaskRCNN(
     mode="inference",

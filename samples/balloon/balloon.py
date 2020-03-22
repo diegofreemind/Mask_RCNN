@@ -43,11 +43,11 @@ from mrcnn.config import Config
 from mrcnn import model as modellib, utils
 
 # Path to trained weights file
-COCO_WEIGHTS_PATH = os.path.join('{YOUR_PATH}/weights/mask-r-cnn', "mask_rcnn_coco.h5")
+COCO_WEIGHTS_PATH = os.path.join('/mnt/020A64DB0A64CD6B/weights/mask-r-cnn', "mask_rcnn_coco.h5")
 
 # Directory to save logs and model checkpoints, if not provided
 # through the command line argument --logs
-DEFAULT_LOGS_DIR = os.path.join('{YOUR_PATH}/weights/mask-r-cnn/custom', "logs")
+DEFAULT_LOGS_DIR = os.path.join('/mnt/020A64DB0A64CD6B/weights/mask-r-cnn', "custom")
 
 ############################################################
 #  Configurations
@@ -75,7 +75,7 @@ class BalloonConfig(Config):
     BACKBONE = "resnet50"
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 100
+    STEPS_PER_EPOCH = 2
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
