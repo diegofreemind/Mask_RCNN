@@ -63,7 +63,7 @@ class DamageConfig(Config):
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
-    NAME = CLASS_NAME
+    NAME = os.getenv('CLASS_NAME')
 
     # I use a GPU with 4GB memory, which can fit one image.
     # Adjust down if you use a greather GPU.
@@ -76,7 +76,7 @@ class DamageConfig(Config):
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # background + damage
 
-    BACKBONE = BACKBONE_TYPE
+    BACKBONE = os.getenv("BACKBONE_TYPE")
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -119,7 +119,7 @@ class DamageDataset(utils.Dataset):
         # }
         # We mostly care about the x and y coordinates of each region
         # Note: In VIA 2.0, regions was changed from a dict to a list.
-        annotations = json.load(open(os.path.join(dataset_dir, REGION_MAP)))
+        annotations = json.load(open(os.path.join(dataset_dir, os.getenv("REGION_MAP"))))
         annotations = list(annotations.values())  # don't need the dict keys
 
         # The VIA tool saves images in the JSON even if they don't have any
